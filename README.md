@@ -1,10 +1,10 @@
 # RightOp
 
-![RightOp app icon](Artwork/RightOpIcon-master.png)
+![RightOp — Finder, upgraded](Artwork/RightOp-Banner.png)
 
-RightOp is an open-source macOS Finder Sync extension that adds practical file
-operations directly to Finder's context menu. It is a native SwiftUI + AppKit
-project with no third-party runtime dependencies.
+RightOp is a source-available macOS Finder Sync extension that adds practical
+file operations directly to Finder's context menu. It is a native SwiftUI +
+AppKit project with no third-party runtime dependencies.
 
 The product direction was inspired by the breadth of
 [iRightMouse](https://www.better365.cn/irightmouse.html), but the interface,
@@ -28,11 +28,34 @@ With, Share/AirDrop, Duplicate, and New Folder with Selection—to Finder.
 ## Requirements
 
 - macOS 13 or later
-- Xcode 16 or later
+- Apple silicon or Intel Mac
+
+Building from source additionally requires Xcode 16 or later.
 
 An Apple account is **not required** to build and use RightOp on your own Mac.
 The local-build script uses an ad-hoc signature, preserving the sandbox and App
 Group entitlements needed by the app and Finder extension.
+
+## Install from a DMG
+
+1. Download or build `RightOp-1.0.dmg`.
+2. Double-click the DMG to mount it.
+3. Drag **RightOp.app** onto the **Applications** shortcut.
+4. Eject the `RightOp 1.0` disk image.
+5. Open RightOp from Applications.
+6. Click **Enable Extension** and switch RightOp on in macOS Settings.
+7. Click **Choose Folder** and authorize your Home folder. Add external volumes
+   separately if you want file-changing actions there.
+8. Right-click a file, folder, or empty space in Finder. RightOp's enabled
+   actions appear directly after Finder's built-in actions.
+
+This local release is ad-hoc signed and is not Apple-notarized. If macOS blocks
+the first launch, try opening RightOp once, then go to **System Settings →
+Privacy & Security**, scroll to **Security**, and choose **Open Anyway** only
+if you obtained the DMG from a source you trust.
+
+Keep RightOp in `/Applications` after enabling the extension so Finder always
+uses the same extension path.
 
 ## Build locally without an Apple account
 
@@ -45,22 +68,12 @@ cd /path/to/rightop
 
 The signed application is created at `dist/RightOp.app`.
 
-## Install and enable
+To build the compressed DMG—including an Applications shortcut and the license—
+run:
 
-1. Make sure RightOp is not already running.
-2. Drag `dist/RightOp.app` into your `/Applications` folder.
-3. Open RightOp from Applications. If macOS presents a security prompt,
-   Control-click the app, choose **Open**, then confirm **Open**.
-4. Click **Enable Extension** in the app. macOS opens the Finder Extensions
-   management screen; switch RightOp on.
-5. Click **Choose Folder** and grant access to your Home folder. Add external
-   volumes separately if you want file-changing actions there. The authorization
-   is stored as a macOS security-scoped bookmark.
-6. Right-click a file, folder, or empty space in a Finder window. RightOp's
-   enabled actions appear directly after Finder's built-in actions.
-
-Keep the app at a stable path after enabling the extension. Ad-hoc signing is
-intended for local use; it is not notarized for distribution to other Macs.
+```sh
+./Scripts/create-dmg.sh
+```
 
 If Finder has cached an older development build, disable and re-enable RightOp,
 or run:
@@ -113,7 +126,7 @@ RightOp/                  SwiftUI containing app and settings
 RightOpFinderExtension/   Finder Sync menu and action handlers
 Shared/                   Shared preferences and testable file utilities
 Tests/                    Swift package tests for core logic
-Artwork/                  Original high-resolution app icon source
+Artwork/                  Product banner and high-resolution app icon source
 ```
 
 Finder Sync only offers menus inside registered directories. RightOp registers
@@ -131,4 +144,8 @@ it is not recommended.
 
 ## License
 
-MIT — see [LICENSE](LICENSE).
+RightOp is licensed under the
+[PolyForm Noncommercial License 1.0.0](LICENSE). Noncommercial use is permitted
+under those terms. **Commercial use requires prior written permission and a
+separate commercial license from the RightOp licensor.** Request commercial-use
+permission through the [RightOp issue tracker](https://github.com/vlyl/rightop/issues).
