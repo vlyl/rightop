@@ -1,0 +1,576 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 56;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		B10000000000000000000001 /* RightOpApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = F10000000000000000000001 /* RightOpApp.swift */; };
+		B10000000000000000000002 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F10000000000000000000002 /* ContentView.swift */; };
+		B10000000000000000000003 /* SettingsStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = F10000000000000000000003 /* SettingsStore.swift */; };
+		B10000000000000000000004 /* AppConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = F30000000000000000000001 /* AppConstants.swift */; };
+		B10000000000000000000005 /* RightOpAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = F30000000000000000000002 /* RightOpAction.swift */; };
+		B10000000000000000000006 /* PathUtilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = F30000000000000000000003 /* PathUtilities.swift */; };
+		B10000000000000000000007 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F10000000000000000000006 /* Assets.xcassets */; };
+		B10000000000000000000008 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F50000000000000000000001 /* SwiftUI.framework */; };
+		B10000000000000000000009 /* AppKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F50000000000000000000002 /* AppKit.framework */; };
+		B1000000000000000000000A /* FinderSync.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F50000000000000000000003 /* FinderSync.framework */; };
+		B1000000000000000000000B /* RightOpFinderExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = F60000000000000000000002 /* RightOpFinderExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, CodeSignOnCopy, ); }; };
+		B1000000000000000000000C /* SecurityScopedBookmarks.swift in Sources */ = {isa = PBXBuildFile; fileRef = F30000000000000000000005 /* SecurityScopedBookmarks.swift */; };
+		B20000000000000000000001 /* FinderSync.swift in Sources */ = {isa = PBXBuildFile; fileRef = F20000000000000000000001 /* FinderSync.swift */; };
+		B20000000000000000000002 /* AppConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = F30000000000000000000001 /* AppConstants.swift */; };
+		B20000000000000000000003 /* RightOpAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = F30000000000000000000002 /* RightOpAction.swift */; };
+		B20000000000000000000004 /* PathUtilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = F30000000000000000000003 /* PathUtilities.swift */; };
+		B20000000000000000000005 /* ChecksumService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F30000000000000000000004 /* ChecksumService.swift */; };
+		B20000000000000000000006 /* AppKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F50000000000000000000002 /* AppKit.framework */; };
+		B20000000000000000000007 /* FinderSync.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F50000000000000000000003 /* FinderSync.framework */; };
+		B20000000000000000000008 /* CryptoKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F50000000000000000000004 /* CryptoKit.framework */; };
+		B20000000000000000000009 /* SecurityScopedBookmarks.swift in Sources */ = {isa = PBXBuildFile; fileRef = F30000000000000000000005 /* SecurityScopedBookmarks.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		C10000000000000000000001 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = P10000000000000000000001 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = T20000000000000000000001;
+			remoteInfo = RightOpFinderExtension;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		PH10000000000000000000004 /* Embed App Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				B1000000000000000000000B /* RightOpFinderExtension.appex in Embed App Extensions */,
+			);
+			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		F10000000000000000000001 /* RightOpApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RightOpApp.swift; sourceTree = "<group>"; };
+		F10000000000000000000002 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		F10000000000000000000003 /* SettingsStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsStore.swift; sourceTree = "<group>"; };
+		F10000000000000000000004 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F10000000000000000000005 /* RightOp.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = RightOp.entitlements; sourceTree = "<group>"; };
+		F10000000000000000000006 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		F20000000000000000000001 /* FinderSync.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinderSync.swift; sourceTree = "<group>"; };
+		F20000000000000000000002 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F20000000000000000000003 /* RightOpFinderExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = RightOpFinderExtension.entitlements; sourceTree = "<group>"; };
+		F30000000000000000000001 /* AppConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppConstants.swift; sourceTree = "<group>"; };
+		F30000000000000000000002 /* RightOpAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RightOpAction.swift; sourceTree = "<group>"; };
+		F30000000000000000000003 /* PathUtilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PathUtilities.swift; sourceTree = "<group>"; };
+		F30000000000000000000004 /* ChecksumService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChecksumService.swift; sourceTree = "<group>"; };
+		F30000000000000000000005 /* SecurityScopedBookmarks.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecurityScopedBookmarks.swift; sourceTree = "<group>"; };
+		F40000000000000000000001 /* PathUtilitiesTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PathUtilitiesTests.swift; sourceTree = "<group>"; };
+		F40000000000000000000002 /* ChecksumServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChecksumServiceTests.swift; sourceTree = "<group>"; };
+		F40000000000000000000003 /* Package.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Package.swift; sourceTree = "<group>"; };
+		F40000000000000000000004 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		F40000000000000000000005 /* LICENSE */ = {isa = PBXFileReference; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
+		F40000000000000000000006 /* RightOpIcon-master.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "RightOpIcon-master.png"; sourceTree = "<group>"; };
+		F50000000000000000000001 /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
+		F50000000000000000000002 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
+		F50000000000000000000003 /* FinderSync.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FinderSync.framework; path = System/Library/Frameworks/FinderSync.framework; sourceTree = SDKROOT; };
+		F50000000000000000000004 /* CryptoKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CryptoKit.framework; path = System/Library/Frameworks/CryptoKit.framework; sourceTree = SDKROOT; };
+		F60000000000000000000001 /* RightOp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RightOp.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		F60000000000000000000002 /* RightOpFinderExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = RightOpFinderExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		PH10000000000000000000002 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B10000000000000000000008 /* SwiftUI.framework in Frameworks */,
+				B10000000000000000000009 /* AppKit.framework in Frameworks */,
+				B1000000000000000000000A /* FinderSync.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		PH20000000000000000000002 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B20000000000000000000006 /* AppKit.framework in Frameworks */,
+				B20000000000000000000007 /* FinderSync.framework in Frameworks */,
+				B20000000000000000000008 /* CryptoKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		G10000000000000000000001 = {
+			isa = PBXGroup;
+			children = (
+				G10000000000000000000002 /* RightOp */,
+				G10000000000000000000003 /* RightOpFinderExtension */,
+				G10000000000000000000004 /* Shared */,
+				G10000000000000000000005 /* Tests */,
+				G10000000000000000000006 /* Artwork */,
+				F40000000000000000000003 /* Package.swift */,
+				F40000000000000000000004 /* README.md */,
+				F40000000000000000000005 /* LICENSE */,
+				G10000000000000000000007 /* Frameworks */,
+				G10000000000000000000008 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		G10000000000000000000002 /* RightOp */ = {
+			isa = PBXGroup;
+			children = (
+				F10000000000000000000001 /* RightOpApp.swift */,
+				F10000000000000000000002 /* ContentView.swift */,
+				F10000000000000000000003 /* SettingsStore.swift */,
+				F10000000000000000000006 /* Assets.xcassets */,
+				F10000000000000000000004 /* Info.plist */,
+				F10000000000000000000005 /* RightOp.entitlements */,
+			);
+			path = RightOp;
+			sourceTree = "<group>";
+		};
+		G10000000000000000000003 /* RightOpFinderExtension */ = {
+			isa = PBXGroup;
+			children = (
+				F20000000000000000000001 /* FinderSync.swift */,
+				F20000000000000000000002 /* Info.plist */,
+				F20000000000000000000003 /* RightOpFinderExtension.entitlements */,
+			);
+			path = RightOpFinderExtension;
+			sourceTree = "<group>";
+		};
+		G10000000000000000000004 /* Shared */ = {
+			isa = PBXGroup;
+			children = (
+				F30000000000000000000001 /* AppConstants.swift */,
+				F30000000000000000000002 /* RightOpAction.swift */,
+				F30000000000000000000003 /* PathUtilities.swift */,
+				F30000000000000000000004 /* ChecksumService.swift */,
+				F30000000000000000000005 /* SecurityScopedBookmarks.swift */,
+			);
+			path = Shared;
+			sourceTree = "<group>";
+		};
+		G10000000000000000000005 /* Tests */ = {
+			isa = PBXGroup;
+			children = (
+				F40000000000000000000001 /* PathUtilitiesTests.swift */,
+				F40000000000000000000002 /* ChecksumServiceTests.swift */,
+			);
+			path = Tests/RightOpCoreTests;
+			sourceTree = "<group>";
+		};
+		G10000000000000000000006 /* Artwork */ = {
+			isa = PBXGroup;
+			children = (
+				F40000000000000000000006 /* RightOpIcon-master.png */,
+			);
+			path = Artwork;
+			sourceTree = "<group>";
+		};
+		G10000000000000000000007 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				F50000000000000000000001 /* SwiftUI.framework */,
+				F50000000000000000000002 /* AppKit.framework */,
+				F50000000000000000000003 /* FinderSync.framework */,
+				F50000000000000000000004 /* CryptoKit.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		G10000000000000000000008 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				F60000000000000000000001 /* RightOp.app */,
+				F60000000000000000000002 /* RightOpFinderExtension.appex */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		T10000000000000000000001 /* RightOp */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = CL10000000000000000000001 /* Build configuration list for PBXNativeTarget "RightOp" */;
+			buildPhases = (
+				PH10000000000000000000001 /* Sources */,
+				PH10000000000000000000002 /* Frameworks */,
+				PH10000000000000000000003 /* Resources */,
+				PH10000000000000000000004 /* Embed App Extensions */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				D10000000000000000000001 /* PBXTargetDependency */,
+			);
+			name = RightOp;
+			productName = RightOp;
+			productReference = F60000000000000000000001 /* RightOp.app */;
+			productType = "com.apple.product-type.application";
+		};
+		T20000000000000000000001 /* RightOpFinderExtension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = CL20000000000000000000001 /* Build configuration list for PBXNativeTarget "RightOpFinderExtension" */;
+			buildPhases = (
+				PH20000000000000000000001 /* Sources */,
+				PH20000000000000000000002 /* Frameworks */,
+				PH20000000000000000000003 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = RightOpFinderExtension;
+			productName = RightOpFinderExtension;
+			productReference = F60000000000000000000002 /* RightOpFinderExtension.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		P10000000000000000000001 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1600;
+				LastUpgradeCheck = 1600;
+				TargetAttributes = {
+					T10000000000000000000001 = {
+						CreatedOnToolsVersion = 16.0;
+					};
+					T20000000000000000000001 = {
+						CreatedOnToolsVersion = 16.0;
+					};
+				};
+			};
+			buildConfigurationList = CL00000000000000000000001 /* Build configuration list for PBXProject "RightOp" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = G10000000000000000000001;
+			productRefGroup = G10000000000000000000008 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				T10000000000000000000001 /* RightOp */,
+				T20000000000000000000001 /* RightOpFinderExtension */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		PH10000000000000000000003 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B10000000000000000000007 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		PH20000000000000000000003 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		PH10000000000000000000001 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B10000000000000000000001 /* RightOpApp.swift in Sources */,
+				B10000000000000000000002 /* ContentView.swift in Sources */,
+				B10000000000000000000003 /* SettingsStore.swift in Sources */,
+				B10000000000000000000004 /* AppConstants.swift in Sources */,
+				B10000000000000000000005 /* RightOpAction.swift in Sources */,
+				B10000000000000000000006 /* PathUtilities.swift in Sources */,
+				B1000000000000000000000C /* SecurityScopedBookmarks.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		PH20000000000000000000001 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B20000000000000000000001 /* FinderSync.swift in Sources */,
+				B20000000000000000000002 /* AppConstants.swift in Sources */,
+				B20000000000000000000003 /* RightOpAction.swift in Sources */,
+				B20000000000000000000004 /* PathUtilities.swift in Sources */,
+				B20000000000000000000005 /* ChecksumService.swift in Sources */,
+				B20000000000000000000009 /* SecurityScopedBookmarks.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		D10000000000000000000001 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = T20000000000000000000001 /* RightOpFinderExtension */;
+			targetProxy = C10000000000000000000001 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		BC00000000000000000000001 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MACOSX_DEPLOYMENT_TARGET = 13.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		BC00000000000000000000002 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MACOSX_DEPLOYMENT_TARGET = 13.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = macosx;
+				SWIFT_COMPILATION_MODE = wholemodule;
+			};
+			name = Release;
+		};
+		BC10000000000000000000001 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = RightOp/RightOp.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEAD_CODE_STRIPPING = YES;
+				ENABLE_HARDENED_RUNTIME = YES;
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = RightOp/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = dev.rightop.app;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		BC10000000000000000000002 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = RightOp/RightOp.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEAD_CODE_STRIPPING = YES;
+				ENABLE_HARDENED_RUNTIME = YES;
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = RightOp/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = dev.rightop.app;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
+		BC20000000000000000000001 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				APPLICATION_EXTENSION_API_ONLY = YES;
+				CODE_SIGN_ENTITLEMENTS = RightOpFinderExtension/RightOpFinderExtension.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEAD_CODE_STRIPPING = YES;
+				ENABLE_HARDENED_RUNTIME = YES;
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = RightOpFinderExtension/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@executable_path/../../../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = dev.rightop.app.finder-extension;
+				PRODUCT_MODULE_NAME = RightOpFinderExtension;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		BC20000000000000000000002 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				APPLICATION_EXTENSION_API_ONLY = YES;
+				CODE_SIGN_ENTITLEMENTS = RightOpFinderExtension/RightOpFinderExtension.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEAD_CODE_STRIPPING = YES;
+				ENABLE_HARDENED_RUNTIME = YES;
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = RightOpFinderExtension/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@executable_path/../../../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = dev.rightop.app.finder-extension;
+				PRODUCT_MODULE_NAME = RightOpFinderExtension;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		CL00000000000000000000001 /* Build configuration list for PBXProject "RightOp" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				BC00000000000000000000001 /* Debug */,
+				BC00000000000000000000002 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		CL10000000000000000000001 /* Build configuration list for PBXNativeTarget "RightOp" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				BC10000000000000000000001 /* Debug */,
+				BC10000000000000000000002 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		CL20000000000000000000001 /* Build configuration list for PBXNativeTarget "RightOpFinderExtension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				BC20000000000000000000001 /* Debug */,
+				BC20000000000000000000002 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = P10000000000000000000001 /* Project object */;
+}
