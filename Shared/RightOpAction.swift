@@ -40,6 +40,7 @@ enum RightOpAction: String, CaseIterable, Codable, Identifiable, Sendable {
   case toggleHidden
   case sha256
   case md5
+  case uninstallApplication
   case permanentDelete
 
   var id: String { rawValue }
@@ -55,6 +56,7 @@ enum RightOpAction: String, CaseIterable, Codable, Identifiable, Sendable {
     case .toggleHidden: "Hide or Unhide"
     case .sha256: "Copy SHA-256"
     case .md5: "Copy MD5"
+    case .uninstallApplication: "Uninstall App"
     case .permanentDelete: "Permanently Delete"
     }
   }
@@ -79,6 +81,8 @@ enum RightOpAction: String, CaseIterable, Codable, Identifiable, Sendable {
       "Calculates and copies SHA-256 checksums for selected files."
     case .md5:
       "Calculates and copies legacy MD5 checksums when needed."
+    case .uninstallApplication:
+      "Reviews an app and related files before moving selected items to the Trash."
     case .permanentDelete:
       "Deletes immediately without using the Trash."
     }
@@ -95,6 +99,7 @@ enum RightOpAction: String, CaseIterable, Codable, Identifiable, Sendable {
     case .toggleHidden: "eye.slash"
     case .sha256: "checkmark.seal"
     case .md5: "number"
+    case .uninstallApplication: "trash.circle"
     case .permanentDelete: "trash.slash"
     }
   }
@@ -109,7 +114,7 @@ enum RightOpAction: String, CaseIterable, Codable, Identifiable, Sendable {
       .create
     case .toggleHidden, .sha256, .md5:
       .fileTools
-    case .permanentDelete:
+    case .uninstallApplication, .permanentDelete:
       .dangerZone
     }
   }
@@ -140,16 +145,31 @@ enum TerminalApplication: String, CaseIterable, Identifiable, Sendable {
 }
 
 struct PreferencesSnapshot: Sendable {
+  private static let currentActionSchemaVersion = 1
+
   let enabledActions: Set<RightOpAction>
   let confirmPermanentDelete: Bool
   let terminalApplication: TerminalApplication
 
   init(defaults: UserDefaults = .rightOpShared) {
+    var actions: Set<RightOpAction>
     if let rawValues = defaults.array(forKey: PreferenceKey.enabledActions) as? [String] {
-      enabledActions = Set(rawValues.compactMap(RightOpAction.init(rawValue:)))
+      actions = Set(rawValues.compactMap(RightOpAction.init(rawValue:)))
     } else {
-      enabledActions = Set(RightOpAction.allCases)
+      actions = Set(RightOpAction.allCases)
     }
+
+    if defaults.integer(forKey: PreferenceKey.enabledActionsSchemaVersion)
+      < Self.currentActionSchemaVersion
+    {
+      actions.insert(.uninstallApplication)
+      defaults.set(actions.map(\.rawValue).sorted(), forKey: PreferenceKey.enabledActions)
+      defaults.set(
+        Self.currentActionSchemaVersion,
+        forKey: PreferenceKey.enabledActionsSchemaVersion
+      )
+    }
+    enabledActions = actions
 
     if defaults.object(forKey: PreferenceKey.confirmPermanentDelete) == nil {
       confirmPermanentDelete = true

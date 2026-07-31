@@ -19,6 +19,10 @@
 		B1000000000000000000000A /* FinderSync.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F50000000000000000000003 /* FinderSync.framework */; };
 		B1000000000000000000000B /* RightOpFinderExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = F60000000000000000000002 /* RightOpFinderExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, CodeSignOnCopy, ); }; };
 		B1000000000000000000000C /* SecurityScopedBookmarks.swift in Sources */ = {isa = PBXBuildFile; fileRef = F30000000000000000000005 /* SecurityScopedBookmarks.swift */; };
+		B1000000000000000000000D /* ApplicationUninstallView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F10000000000000000000007 /* ApplicationUninstallView.swift */; };
+		B1000000000000000000000E /* ApplicationUninstaller.swift in Sources */ = {isa = PBXBuildFile; fileRef = F10000000000000000000008 /* ApplicationUninstaller.swift */; };
+		B1000000000000000000000F /* ApplicationUninstall.swift in Sources */ = {isa = PBXBuildFile; fileRef = F30000000000000000000006 /* ApplicationUninstall.swift */; };
+		B10000000000000000000010 /* ApplicationUninstallRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F30000000000000000000007 /* ApplicationUninstallRequest.swift */; };
 		B20000000000000000000001 /* FinderSync.swift in Sources */ = {isa = PBXBuildFile; fileRef = F20000000000000000000001 /* FinderSync.swift */; };
 		B20000000000000000000002 /* AppConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = F30000000000000000000001 /* AppConstants.swift */; };
 		B20000000000000000000003 /* RightOpAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = F30000000000000000000002 /* RightOpAction.swift */; };
@@ -28,6 +32,8 @@
 		B20000000000000000000007 /* FinderSync.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F50000000000000000000003 /* FinderSync.framework */; };
 		B20000000000000000000008 /* CryptoKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F50000000000000000000004 /* CryptoKit.framework */; };
 		B20000000000000000000009 /* SecurityScopedBookmarks.swift in Sources */ = {isa = PBXBuildFile; fileRef = F30000000000000000000005 /* SecurityScopedBookmarks.swift */; };
+		B2000000000000000000000A /* ApplicationUninstall.swift in Sources */ = {isa = PBXBuildFile; fileRef = F30000000000000000000006 /* ApplicationUninstall.swift */; };
+		B2000000000000000000000B /* ApplicationUninstallRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F30000000000000000000007 /* ApplicationUninstallRequest.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -61,6 +67,8 @@
 		F10000000000000000000004 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F10000000000000000000005 /* RightOp.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = RightOp.entitlements; sourceTree = "<group>"; };
 		F10000000000000000000006 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		F10000000000000000000007 /* ApplicationUninstallView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplicationUninstallView.swift; sourceTree = "<group>"; };
+		F10000000000000000000008 /* ApplicationUninstaller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplicationUninstaller.swift; sourceTree = "<group>"; };
 		F20000000000000000000001 /* FinderSync.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinderSync.swift; sourceTree = "<group>"; };
 		F20000000000000000000002 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F20000000000000000000003 /* RightOpFinderExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = RightOpFinderExtension.entitlements; sourceTree = "<group>"; };
@@ -69,12 +77,15 @@
 		F30000000000000000000003 /* PathUtilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PathUtilities.swift; sourceTree = "<group>"; };
 		F30000000000000000000004 /* ChecksumService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChecksumService.swift; sourceTree = "<group>"; };
 		F30000000000000000000005 /* SecurityScopedBookmarks.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecurityScopedBookmarks.swift; sourceTree = "<group>"; };
+		F30000000000000000000006 /* ApplicationUninstall.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplicationUninstall.swift; sourceTree = "<group>"; };
+		F30000000000000000000007 /* ApplicationUninstallRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplicationUninstallRequest.swift; sourceTree = "<group>"; };
 		F40000000000000000000001 /* PathUtilitiesTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PathUtilitiesTests.swift; sourceTree = "<group>"; };
 		F40000000000000000000002 /* ChecksumServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChecksumServiceTests.swift; sourceTree = "<group>"; };
 		F40000000000000000000003 /* Package.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Package.swift; sourceTree = "<group>"; };
 		F40000000000000000000004 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		F40000000000000000000005 /* LICENSE */ = {isa = PBXFileReference; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 		F40000000000000000000006 /* RightOpIcon-master.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "RightOpIcon-master.png"; sourceTree = "<group>"; };
+		F40000000000000000000007 /* ApplicationUninstallTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplicationUninstallTests.swift; sourceTree = "<group>"; };
 		F50000000000000000000001 /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
 		F50000000000000000000002 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
 		F50000000000000000000003 /* FinderSync.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FinderSync.framework; path = System/Library/Frameworks/FinderSync.framework; sourceTree = SDKROOT; };
@@ -129,6 +140,8 @@
 				F10000000000000000000001 /* RightOpApp.swift */,
 				F10000000000000000000002 /* ContentView.swift */,
 				F10000000000000000000003 /* SettingsStore.swift */,
+				F10000000000000000000007 /* ApplicationUninstallView.swift */,
+				F10000000000000000000008 /* ApplicationUninstaller.swift */,
 				F10000000000000000000006 /* Assets.xcassets */,
 				F10000000000000000000004 /* Info.plist */,
 				F10000000000000000000005 /* RightOp.entitlements */,
@@ -154,6 +167,8 @@
 				F30000000000000000000003 /* PathUtilities.swift */,
 				F30000000000000000000004 /* ChecksumService.swift */,
 				F30000000000000000000005 /* SecurityScopedBookmarks.swift */,
+				F30000000000000000000006 /* ApplicationUninstall.swift */,
+				F30000000000000000000007 /* ApplicationUninstallRequest.swift */,
 			);
 			path = Shared;
 			sourceTree = "<group>";
@@ -163,6 +178,7 @@
 			children = (
 				F40000000000000000000001 /* PathUtilitiesTests.swift */,
 				F40000000000000000000002 /* ChecksumServiceTests.swift */,
+				F40000000000000000000007 /* ApplicationUninstallTests.swift */,
 			);
 			path = Tests/RightOpCoreTests;
 			sourceTree = "<group>";
@@ -301,6 +317,10 @@
 				B10000000000000000000005 /* RightOpAction.swift in Sources */,
 				B10000000000000000000006 /* PathUtilities.swift in Sources */,
 				B1000000000000000000000C /* SecurityScopedBookmarks.swift in Sources */,
+				B1000000000000000000000D /* ApplicationUninstallView.swift in Sources */,
+				B1000000000000000000000E /* ApplicationUninstaller.swift in Sources */,
+				B1000000000000000000000F /* ApplicationUninstall.swift in Sources */,
+				B10000000000000000000010 /* ApplicationUninstallRequest.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -314,6 +334,8 @@
 				B20000000000000000000004 /* PathUtilities.swift in Sources */,
 				B20000000000000000000005 /* ChecksumService.swift in Sources */,
 				B20000000000000000000009 /* SecurityScopedBookmarks.swift in Sources */,
+				B2000000000000000000000A /* ApplicationUninstall.swift in Sources */,
+				B2000000000000000000000B /* ApplicationUninstallRequest.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

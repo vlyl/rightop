@@ -20,6 +20,7 @@ implementation, icon, and source in this repository are original.
 - Create uniquely named `.txt` and `.md` files in the current folder
 - Hide or unhide selected items
 - Copy SHA-256 or MD5 checksums
+- Review an application and its related files before moving selected items to the Trash
 - Permanently delete selected items, with confirmation enabled by default
 
 Copy Path is always available; every optional action can be enabled or disabled
@@ -157,6 +158,13 @@ the filesystem root so its menu is available in normal Finder locations and
 mounted volumes. The extension remains sandboxed: operations that read or modify
 contents only work inside folders the user has explicitly authorized. macOS
 privacy controls and volume permissions still apply.
+
+When exactly one `.app` bundle is selected, RightOp adds **Uninstall App…**. The
+review window scans bounded user and system Library locations for bundle-ID and
+name matches. Exact matches are selected by default; weaker name-only suggestions
+remain unchecked. Nothing is removed until the user confirms, and approved items
+are moved to the Trash rather than permanently deleted. This follows the
+conservative cleanup model used by [DelApp](https://github.com/vlyl/delapp).
 
 ### Safety
 
