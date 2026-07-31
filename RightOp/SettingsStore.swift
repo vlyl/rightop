@@ -48,6 +48,7 @@ final class SettingsStore: ObservableObject {
     confirmPermanentDelete = true
     terminalApplication = .terminal
     defaults.removeObject(forKey: PreferenceKey.enabledActions)
+    defaults.removeObject(forKey: PreferenceKey.enabledActionsSchemaVersion)
     defaults.removeObject(forKey: PreferenceKey.confirmPermanentDelete)
     defaults.removeObject(forKey: PreferenceKey.terminalApplication)
     objectWillChange.send()

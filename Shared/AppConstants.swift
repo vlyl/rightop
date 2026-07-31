@@ -9,6 +9,7 @@ enum AppConstants {
 
 enum PreferenceKey {
   static let enabledActions = "enabledActions"
+  static let enabledActionsSchemaVersion = "enabledActionsSchemaVersion"
   static let confirmPermanentDelete = "confirmPermanentDelete"
   static let terminalApplication = "terminalApplication"
 }

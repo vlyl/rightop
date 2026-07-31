@@ -28,6 +28,8 @@ private enum AppSection: String, CaseIterable, Identifiable {
 
 struct ContentView: View {
   @State private var selection: AppSection? = .overview
+  @State private var uninstallRequest: ApplicationUninstallRequest?
+  @State private var uninstallRequestError: String?
 
   var body: some View {
     NavigationSplitView {
@@ -62,6 +64,29 @@ struct ContentView: View {
       .background(Color(nsColor: .windowBackgroundColor))
     }
     .tint(.indigo)
+    .onOpenURL(perform: openUninstallRequest)
+    .sheet(item: $uninstallRequest) { request in
+      ApplicationUninstallView(request: request)
+    }
+    .alert(
+      "Unable to open uninstall review",
+      isPresented: Binding(
+        get: { uninstallRequestError != nil },
+        set: { if !$0 { uninstallRequestError = nil } }
+      )
+    ) {
+      Button("OK", role: .cancel) {}
+    } message: {
+      Text(uninstallRequestError ?? "The request could not be opened.")
+    }
+  }
+
+  private func openUninstallRequest(_ url: URL) {
+    do {
+      uninstallRequest = try ApplicationUninstallRequestStore.consume(url)
+    } catch {
+      uninstallRequestError = error.localizedDescription
+    }
   }
 }
 
@@ -88,7 +113,7 @@ private struct OverviewView: View {
     ),
     Benefit(
       title: "Power tools",
-      detail: "Checksums, hidden flags, and careful permanent deletion.",
+      detail: "Checksums, hidden flags, app cleanup, and careful permanent deletion.",
       symbol: "wrench.and.screwdriver"
     ),
   ]

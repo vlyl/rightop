@@ -68,6 +68,19 @@ final class FinderSync: FIFinderSync {
       selectedURLs: selectedURLs
     )
 
+    if selectedURLs.count == 1,
+      ApplicationUninstallRequestStore.isApplicationBundle(selectedURLs[0]),
+      preferences.isEnabled(.uninstallApplication)
+    {
+      menu.addItem(
+        menuItem(
+          "Uninstall App…",
+          action: #selector(uninstallApplication(_:)),
+          symbol: "trash.circle"
+        )
+      )
+    }
+
     if !selectedURLs.isEmpty, preferences.isEnabled(.permanentDelete) {
       menu.addItem(
         menuItem(
@@ -309,12 +322,42 @@ final class FinderSync: FIFinderSync {
     }
   }
 
-  @objc private func openSettings(_ sender: Any?) {
+  @objc private func uninstallApplication(_ sender: Any?) {
+    let urls = selectedURLs()
     guard
-      let appURL = NSWorkspace.shared.urlForApplication(
-        withBundleIdentifier: AppConstants.appBundleIdentifier
-      )
-    else {
+      urls.count == 1,
+      ApplicationUninstallRequestStore.isApplicationBundle(urls[0])
+    else { return }
+
+    do {
+      let requestURL = try ApplicationUninstallRequestStore.create(for: urls[0])
+      guard let appURL = containingApplicationURL() else {
+        ApplicationUninstallRequestStore.discard(requestURL)
+        showError("The RightOp application could not be found.")
+        return
+      }
+
+      let configuration = NSWorkspace.OpenConfiguration()
+      configuration.activates = true
+      NSWorkspace.shared.open(
+        [requestURL],
+        withApplicationAt: appURL,
+        configuration: configuration
+      ) { [weak self] _, error in
+        if let error {
+          ApplicationUninstallRequestStore.discard(requestURL)
+          self?.showError(
+            "The uninstall review could not be opened.\n\n\(error.localizedDescription)"
+          )
+        }
+      }
+    } catch {
+      showError("The uninstall review could not be prepared.\n\n\(error.localizedDescription)")
+    }
+  }
+
+  @objc private func openSettings(_ sender: Any?) {
+    guard let appURL = containingApplicationURL() else {
       showError("The RightOp application could not be found.")
       return
     }
@@ -403,6 +446,19 @@ final class FinderSync: FIFinderSync {
 
   private func isHidden(_ url: URL) -> Bool {
     (try? url.resourceValues(forKeys: [.isHiddenKey]).isHidden) ?? false
+  }
+
+  private func containingApplicationURL() -> URL? {
+    let applicationURL = Bundle(for: FinderSync.self).bundleURL
+      .deletingLastPathComponent()
+      .deletingLastPathComponent()
+      .deletingLastPathComponent()
+      .standardizedFileURL
+    guard
+      applicationURL.pathExtension.lowercased() == "app",
+      Bundle(url: applicationURL)?.bundleIdentifier == AppConstants.appBundleIdentifier
+    else { return nil }
+    return applicationURL
   }
 
   private func copyToPasteboard(_ string: String) {
