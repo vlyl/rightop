@@ -1,0 +1,69 @@
+name: Release
+
+on:
+  push:
+    tags:
+      - "v*"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: release-${{ github.ref_name }}
+  cancel-in-progress: false
+
+jobs:
+  build-and-release:
+    name: Build and publish DMG
+    runs-on: macos-15
+    timeout-minutes: 25
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v6
+
+      - name: Validate release tag
+        id: release
+        shell: zsh
+        run: |
+          app_version="$(/usr/libexec/PlistBuddy -c 'Print :CFBundleShortVersionString' RightOp/Info.plist)"
+          tag_version="${GITHUB_REF_NAME#v}"
+
+          if [[ "${tag_version}" != "${app_version}" && "${tag_version}" != "${app_version}.0" ]]; then
+            print -u2 "Tag ${GITHUB_REF_NAME} does not match app version ${app_version}."
+            exit 1
+          fi
+
+          echo "app_version=${app_version}" >> "${GITHUB_OUTPUT}"
+          echo "dmg_path=dist/RightOp-${app_version}.dmg" >> "${GITHUB_OUTPUT}"
+          echo "checksum_path=dist/RightOp-${app_version}.dmg.sha256" >> "${GITHUB_OUTPUT}"
+
+      - name: Run unit tests
+        run: swift test
+
+      - name: Build and verify DMG
+        run: ./Scripts/create-dmg.sh
+
+      - name: Create checksum
+        shell: zsh
+        run: |
+          cd dist
+          shasum -a 256 "RightOp-${{ steps.release.outputs.app_version }}.dmg" > "RightOp-${{ steps.release.outputs.app_version }}.dmg.sha256"
+
+      - name: Publish GitHub release
+        env:
+          GH_TOKEN: ${{ github.token }}
+          DMG_PATH: ${{ steps.release.outputs.dmg_path }}
+          CHECKSUM_PATH: ${{ steps.release.outputs.checksum_path }}
+        shell: zsh
+        run: |
+          if gh release view "${GITHUB_REF_NAME}" >/dev/null 2>&1; then
+            gh release upload "${GITHUB_REF_NAME}" "${DMG_PATH}" "${CHECKSUM_PATH}" --clobber
+          else
+            gh release create "${GITHUB_REF_NAME}" \
+              "${DMG_PATH}" \
+              "${CHECKSUM_PATH}" \
+              --verify-tag \
+              --generate-notes \
+              --title "RightOp ${GITHUB_REF_NAME#v}"
+          fi

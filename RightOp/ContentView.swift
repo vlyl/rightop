@@ -73,7 +73,7 @@ private struct OverviewView: View {
   private let benefits = [
     Benefit(
       title: "Clipboard-ready",
-      detail: "Directory paths, names, and shell-safe paths without opening Get Info.",
+      detail: "Full paths, directory paths, names, and shell-safe paths without hidden shortcuts.",
       symbol: "doc.on.clipboard"
     ),
     Benefit(
@@ -102,7 +102,7 @@ private struct OverviewView: View {
           Text("A smaller trip from thought to action")
             .font(.title2.bold())
           Text(
-            "RightOp puts practical file operations directly in Finder’s contextual menu, with every action configurable."
+            "RightOp puts practical file operations directly in Finder’s contextual menu, with optional actions configurable."
           )
           .foregroundStyle(.secondary)
           .fixedSize(horizontal: false, vertical: true)

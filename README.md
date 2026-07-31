@@ -2,6 +2,9 @@
 
 ![RightOp — Finder, upgraded](Artwork/RightOp-Banner.png)
 
+[![CI](https://github.com/vlyl/rightop/actions/workflows/ci.yml/badge.svg)](https://github.com/vlyl/rightop/actions/workflows/ci.yml)
+[![GitHub release](https://img.shields.io/github/v/release/vlyl/rightop)](https://github.com/vlyl/rightop/releases/latest)
+
 RightOp is a source-available macOS Finder Sync extension that adds practical
 file operations directly to Finder's context menu. It is a native SwiftUI +
 AppKit project with no third-party runtime dependencies.
@@ -12,18 +15,19 @@ implementation, icon, and source in this repository are original.
 
 ## Included actions
 
-- Copy containing-directory paths, names, or shell-escaped paths
+- Always-visible full-path copying, plus containing-directory paths, names, or shell-escaped paths
 - Open the current directory in Terminal, iTerm2, or Warp
 - Create uniquely named `.txt` and `.md` files in the current folder
 - Hide or unhide selected items
 - Copy SHA-256 or MD5 checksums
 - Permanently delete selected items, with confirmation enabled by default
 
-Every action can be enabled or disabled in the containing app. The Finder menu
-reads the shared preference each time it opens.
+Copy Path is always available; every optional action can be enabled or disabled
+in the containing app. The Finder menu reads the shared preference each time it
+opens.
 
-RightOp intentionally leaves native operations—such as Copy as Pathname, Open
-With, Share/AirDrop, Duplicate, and New Folder with Selection—to Finder.
+RightOp intentionally leaves native operations—such as Open With, Share/AirDrop,
+Duplicate, and New Folder with Selection—to Finder.
 
 ## Requirements
 
@@ -118,6 +122,25 @@ xcodebuild \
   -configuration Debug \
   build
 ```
+
+## CI and releases
+
+GitHub Actions runs the unit tests, builds the universal macOS app, verifies its
+ad-hoc signature, and stores a downloadable application artifact for every push
+to `main` and every pull request.
+
+To publish a release, first update `CFBundleShortVersionString` in
+`RightOp/Info.plist`, then push a matching tag. For example, app version `1.1`
+accepts either `v1.1` or `v1.1.0`:
+
+```sh
+git tag v1.1.0
+git push origin v1.1.0
+```
+
+The release workflow tests the code, creates and verifies the DMG, writes a
+SHA-256 checksum, and uploads both files to the matching GitHub Release.
+Dependabot checks the workflow actions for updates each week.
 
 ## Project structure
 

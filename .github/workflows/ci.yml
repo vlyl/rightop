@@ -1,0 +1,50 @@
+name: CI
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build-and-test:
+    name: Test and build
+    runs-on: macos-15
+    timeout-minutes: 20
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v6
+
+      - name: Show toolchain versions
+        run: |
+          xcodebuild -version
+          swift --version
+
+      - name: Run unit tests
+        run: swift test
+
+      - name: Build universal application
+        run: ./Scripts/build-local.sh
+
+      - name: Verify application signature
+        run: codesign --verify --deep --strict --verbose=2 dist/RightOp.app
+
+      - name: Package application artifact
+        run: ditto -c -k --sequesterRsrc --keepParent dist/RightOp.app dist/RightOp-app.zip
+
+      - name: Upload application artifact
+        uses: actions/upload-artifact@v7
+        with:
+          name: RightOp-${{ github.sha }}
+          path: dist/RightOp-app.zip
+          if-no-files-found: error
+          retention-days: 14

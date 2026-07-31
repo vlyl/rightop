@@ -97,6 +97,10 @@ final class FinderSync: FIFinderSync {
   ) {
     guard hasSelection || hasTarget else { return }
 
+    menu.addItem(
+      menuItem("Copy Path", action: #selector(copyPaths(_:)), symbol: "doc.on.doc")
+    )
+
     if preferences.isEnabled(.copyDirectoryPath) {
       menu.addItem(
         menuItem(
@@ -204,6 +208,10 @@ final class FinderSync: FIFinderSync {
         )
       }
     }
+  }
+
+  @objc private func copyPaths(_ sender: Any?) {
+    copyToPasteboard(selectedOrTargetedURLs().map(\.path).joined(separator: "\n"))
   }
 
   @objc private func copyDirectoryPaths(_ sender: Any?) {
