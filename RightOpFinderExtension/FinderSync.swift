@@ -68,9 +68,12 @@ final class FinderSync: FIFinderSync {
       selectedURLs: selectedURLs
     )
 
-    if selectedURLs.count == 1,
-      ApplicationUninstallRequestStore.isApplicationBundle(selectedURLs[0]),
-      preferences.isEnabled(.uninstallApplication)
+    if preferences.isEnabled(.uninstallApplication),
+      ApplicationUninstallMenuPolicy.shouldOffer(
+        for: selectedURLs,
+        frontmostApplicationBundleIdentifier: NSWorkspace.shared.frontmostApplication?
+          .bundleIdentifier
+      )
     {
       menu.addItem(
         menuItem(
@@ -325,7 +328,11 @@ final class FinderSync: FIFinderSync {
   @objc private func uninstallApplication(_ sender: Any?) {
     let urls = selectedURLs()
     guard
-      urls.count == 1,
+      ApplicationUninstallMenuPolicy.shouldOffer(
+        for: urls,
+        frontmostApplicationBundleIdentifier: NSWorkspace.shared.frontmostApplication?
+          .bundleIdentifier
+      ),
       ApplicationUninstallRequestStore.isApplicationBundle(urls[0])
     else { return }
 

@@ -159,12 +159,13 @@ mounted volumes. The extension remains sandboxed: operations that read or modify
 contents only work inside folders the user has explicitly authorized. macOS
 privacy controls and volume permissions still apply.
 
-When exactly one `.app` bundle is selected, RightOp adds **Uninstall App…**. The
-review window scans bounded user and system Library locations for bundle-ID and
-name matches. Exact matches are selected by default; weaker name-only suggestions
-remain unchecked. Nothing is removed until the user confirms, and approved items
-are moved to the Trash rather than permanently deleted. This follows the
-conservative cleanup model used by [DelApp](https://github.com/vlyl/delapp).
+When exactly one `.app` bundle is selected in Finder, RightOp adds
+**Uninstall App…**. The review window scans bounded user and system Library
+locations for bundle-ID and name matches. Exact matches are selected by default;
+weaker name-only suggestions remain unchecked. Nothing is removed until the user
+confirms, and approved items are moved to the Trash rather than permanently
+deleted. This follows the conservative cleanup model used by
+[DelApp](https://github.com/vlyl/delapp).
 
 ### Safety
 
