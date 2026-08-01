@@ -103,6 +103,30 @@ struct ApplicationUninstallTests {
   }
 
   @Test
+  func uninstallMenuIsFinderOnlyAndDoesNotRequireFileSystemAccess() {
+    let missingApplication = URL(fileURLWithPath: "/Applications/Does Not Exist.app")
+
+    #expect(
+      ApplicationUninstallMenuPolicy.shouldOffer(
+        for: [missingApplication],
+        frontmostApplicationBundleIdentifier: "com.apple.finder"
+      )
+    )
+    #expect(
+      !ApplicationUninstallMenuPolicy.shouldOffer(
+        for: [missingApplication],
+        frontmostApplicationBundleIdentifier: "com.example.file-picker-host"
+      )
+    )
+    #expect(
+      !ApplicationUninstallMenuPolicy.shouldOffer(
+        for: [URL(fileURLWithPath: "/Applications/Document.txt")],
+        frontmostApplicationBundleIdentifier: "com.apple.finder"
+      )
+    )
+  }
+
+  @Test
   func existingPreferencesEnableNewUninstallActionOnce() {
     let suiteName = "RightOpCoreTests.\(UUID().uuidString)"
     let defaults = UserDefaults(suiteName: suiteName)!

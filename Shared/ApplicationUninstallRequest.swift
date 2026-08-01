@@ -5,6 +5,26 @@ struct ApplicationUninstallRequest: Identifiable {
   let applicationURL: URL
 }
 
+enum ApplicationUninstallMenuPolicy {
+  private static let finderBundleIdentifier = "com.apple.finder"
+
+  /// Menu construction must not inspect the file system. Finder Sync can be
+  /// asked for menus by open/save panels hosted by other applications, and a
+  /// resource-value lookup there can trigger an unrelated privacy prompt.
+  static func shouldOffer(
+    for selectedURLs: [URL],
+    frontmostApplicationBundleIdentifier: String?
+  ) -> Bool {
+    guard
+      frontmostApplicationBundleIdentifier == finderBundleIdentifier,
+      selectedURLs.count == 1
+    else { return false }
+
+    let url = selectedURLs[0]
+    return url.isFileURL && url.pathExtension.caseInsensitiveCompare("app") == .orderedSame
+  }
+}
+
 enum ApplicationUninstallRequestError: LocalizedError {
   case notAnApplication
   case invalidRequest
