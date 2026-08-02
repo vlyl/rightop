@@ -159,6 +159,11 @@ mounted volumes. The extension remains sandboxed: operations that read or modify
 contents only work inside folders the user has explicitly authorized. macOS
 privacy controls and volume permissions still apply.
 
+RightOp does not activate folder bookmarks or inspect file metadata while Finder
+or another application's open/save panel is merely building its context menu.
+Authorized folder access begins only after the user chooses an action that needs
+to read or modify files.
+
 When exactly one `.app` bundle is selected in Finder, RightOp adds
 **Uninstall App…**. The review window scans bounded user and system Library
 locations for bundle-ID and name matches. Exact matches are selected by default;
