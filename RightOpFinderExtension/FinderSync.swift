@@ -12,7 +12,6 @@ final class FinderSync: FIFinderSync {
     // the filesystem root makes RightOp available in normal Finder locations
     // and on mounted external volumes.
     controller.directoryURLs = [URL(fileURLWithPath: "/", isDirectory: true)]
-    refreshSecurityScopedAccess()
   }
 
   deinit {
@@ -35,11 +34,10 @@ final class FinderSync: FIFinderSync {
   }
 
   override func menu(for menuKind: FIMenuKind) -> NSMenu? {
-    refreshSecurityScopedAccess()
     let preferences = PreferencesSnapshot()
     let selectedURLs = controller.selectedItemURLs() ?? []
     let targetURL = controller.targetedURL()
-    let directory = contextDirectory(selection: selectedURLs, target: targetURL)
+    let hasContext = !selectedURLs.isEmpty || targetURL != nil
 
     let menu = NSMenu(title: AppConstants.appName)
 
@@ -53,13 +51,13 @@ final class FinderSync: FIFinderSync {
     addWorkflowActions(
       to: menu,
       preferences: preferences,
-      hasDirectory: directory != nil
+      hasContext: hasContext
     )
 
     addCreationActions(
       to: menu,
       preferences: preferences,
-      hasDirectory: directory != nil
+      hasContext: hasContext
     )
 
     addFileTools(
@@ -147,9 +145,9 @@ final class FinderSync: FIFinderSync {
   private func addWorkflowActions(
     to menu: NSMenu,
     preferences: PreferencesSnapshot,
-    hasDirectory: Bool
+    hasContext: Bool
   ) {
-    if hasDirectory, preferences.isEnabled(.openInTerminal) {
+    if hasContext, preferences.isEnabled(.openInTerminal) {
       menu.addItem(
         menuItem(
           "Open in \(preferences.terminalApplication.title)",
@@ -163,9 +161,9 @@ final class FinderSync: FIFinderSync {
   private func addCreationActions(
     to menu: NSMenu,
     preferences: PreferencesSnapshot,
-    hasDirectory: Bool
+    hasContext: Bool
   ) {
-    guard hasDirectory else { return }
+    guard hasContext else { return }
 
     if preferences.isEnabled(.newTextFile) {
       menu.addItem(
@@ -195,20 +193,16 @@ final class FinderSync: FIFinderSync {
     guard !selectedURLs.isEmpty else { return }
 
     if preferences.isEnabled(.toggleHidden) {
-      let allHidden = selectedURLs.allSatisfy(isHidden)
       menu.addItem(
         menuItem(
-          allHidden ? "Unhide" : "Hide",
+          "Hide or Unhide",
           action: #selector(toggleHidden(_:)),
-          symbol: allHidden ? "eye" : "eye.slash"
+          symbol: "eye.slash"
         )
       )
     }
 
-    let fileURLs = selectedURLs.filter(isRegularFile)
-    if !fileURLs.isEmpty,
-      preferences.isEnabled(.sha256) || preferences.isEnabled(.md5)
-    {
+    if preferences.isEnabled(.sha256) || preferences.isEnabled(.md5) {
       if preferences.isEnabled(.sha256) {
         menu.addItem(
           menuItem(
@@ -231,6 +225,7 @@ final class FinderSync: FIFinderSync {
   }
 
   @objc private func copyDirectoryPaths(_ sender: Any?) {
+    activateAuthorizedFolderAccess()
     let directories = PathFormatting.uniqueDirectories(for: selectedOrTargetedURLs())
     copyToPasteboard(directories.map(\.path).joined(separator: "\n"))
   }
@@ -247,6 +242,7 @@ final class FinderSync: FIFinderSync {
   }
 
   @objc private func openInTerminal(_ sender: Any?) {
+    activateAuthorizedFolderAccess()
     guard
       let directory = contextDirectory(
         selection: selectedURLs(),
@@ -288,6 +284,7 @@ final class FinderSync: FIFinderSync {
   }
 
   @objc private func toggleHidden(_ sender: Any?) {
+    activateAuthorizedFolderAccess()
     let urls = selectedURLs()
     let shouldHide = !urls.allSatisfy(isHidden)
 
@@ -310,6 +307,7 @@ final class FinderSync: FIFinderSync {
   }
 
   @objc private func permanentlyDelete(_ sender: Any?) {
+    activateAuthorizedFolderAccess()
     let urls = selectedURLs()
     guard !urls.isEmpty else { return }
 
@@ -326,6 +324,7 @@ final class FinderSync: FIFinderSync {
   }
 
   @objc private func uninstallApplication(_ sender: Any?) {
+    activateAuthorizedFolderAccess()
     let urls = selectedURLs()
     guard
       ApplicationUninstallMenuPolicy.shouldOffer(
@@ -379,6 +378,7 @@ final class FinderSync: FIFinderSync {
   }
 
   private func createFile(named preferredName: String) {
+    activateAuthorizedFolderAccess()
     guard
       let directory = contextDirectory(
         selection: selectedURLs(),
@@ -397,6 +397,7 @@ final class FinderSync: FIFinderSync {
   }
 
   private func copyChecksums(_ algorithm: ChecksumAlgorithm) {
+    activateAuthorizedFolderAccess()
     let files = selectedURLs().filter(isRegularFile)
     guard !files.isEmpty else { return }
 
@@ -531,7 +532,10 @@ final class FinderSync: FIFinderSync {
     return image
   }
 
-  private func refreshSecurityScopedAccess() {
+  private func activateAuthorizedFolderAccess() {
+    // Never call this from init or menu(for:). Finder Sync is also hosted by
+    // other applications' open/save panels, where eager bookmark access causes
+    // macOS to request App Data permission before the user chooses an action.
     for url in securityScopedURLs {
       url.stopAccessingSecurityScopedResource()
     }
